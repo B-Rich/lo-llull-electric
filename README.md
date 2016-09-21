@@ -1,2 +1,1 @@
-# llull-electric
-Ramon Llull electric
+Ramon Llull electric tweeting at https://twitter.com/lollullelectric
