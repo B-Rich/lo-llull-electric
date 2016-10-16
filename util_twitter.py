@@ -1,12 +1,18 @@
 import tweepy
 import twitter_keys
 
+consumer_key, consumer_secret, access_token, access_token_secret = twitter_keys.getKeys()
+
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_token_secret)
+
+api = tweepy.API(auth)
 
 def twit_text(text):
-	consumer_key, consumer_secret, access_token, access_token_secret = twitter_keys.getKeys()
+    global api
+    api.update_status(text)
 
-	auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-	auth.set_access_token(access_token, access_token_secret)
-
-	api = tweepy.API(auth)
-	api.update_status(test)
+def get_twits(username):
+    global api
+    twits = api.user_timeline(username)
+    return twits
