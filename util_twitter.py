@@ -16,3 +16,7 @@ def get_twits(username):
     global api
     twits = api.user_timeline(username)
     return twits
+
+def get_following(username):
+    global api
+    return api.friends_ids(username)
