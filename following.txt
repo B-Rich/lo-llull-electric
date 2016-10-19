@@ -5,7 +5,6 @@
 @ARAopinio
 @marisolbcn
 @Snowden
-@moragasai
 @tv3cat
 @catalangov
 @barcelona_cat
@@ -16,3 +15,5 @@
 @OndaCero_cat
 @A3Catalunya
 @catreligio
+@BibianaBallbe
+@jldevicente
