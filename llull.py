@@ -82,7 +82,7 @@ for user in following:
 
             sys.stdout.write(next_char)
             sys.stdout.flush()
-        generated += " https://twitter.com/"+user+"/status/"+str(tweet.id)
+        generated += " https://twitter.com/"+(user[1:])+"/status/"+str(tweet.id)
         util_twitter.twit_text(generated)
         print("\n")
       except:
