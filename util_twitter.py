@@ -10,7 +10,8 @@ api = tweepy.API(auth)
 
 def twit_text(text):
     global api
-    api.update_status(text)
+    response = api.update_status(text)
+    return response
 
 def get_twits(username):
     global api

@@ -11,7 +11,7 @@ from keras.models import load_model
 import util_twitter
 import time
 
-minutesBetweenTweets = 4
+minutesBetweenTweets = 20
 
 path = "textosLlull/cleaner.txt" 
 text = open(path).read().lower()
@@ -49,11 +49,18 @@ for line in fi:
 fi.close()
 # Future: util_twitter.get_following("lollullelectric")
 
+done = {}
+logger=open("alreadyDone.txt",'r+')
+for line in logger:
+    sline = line.strip().split()
+    done[sline[0]]=sline[1]
+
 user = np.random.choice(following)
 tweets = util_twitter.get_twits(user)
 
 temperatures = [0.2, 0.4, 0.7, 1.0]
-while True:
+try:
+ while True:
    #for user in following:
    user = np.random.choice(following)
    print ("Going to answer to "+user)
@@ -65,6 +72,8 @@ while True:
      text = cleanText(rawtext)
      if len(text)<=maxlen:
         print ("Too short: "+text)
+     elif (tweet.id in done):
+        print ("Tweet already quoted")
      else:
       try:
         diversity = np.random.choice(temperatures)
@@ -91,11 +100,15 @@ while True:
             sys.stdout.write(next_char)
             sys.stdout.flush()
         generated += " https://twitter.com/"+(user[1:])+"/status/"+str(tweet.id)
-        util_twitter.twit_text(generated)
+        response=util_twitter.twit_text(generated)
+        done[tweet.id]=response.id
+        logger.write(str(tweet.id)+","+str(response.id)+"\n")
+        time.sleep(minutesBetweenTweets*60)
         print("\n")
       except:
         print ("Had problems with "+rawtext)
         continue
    except:
       print (user+" has blocked us")
-   time.sleep(minutesBetweenTweets*60)
+except KeyboardInterrupt:
+ print ("Interrupted")
