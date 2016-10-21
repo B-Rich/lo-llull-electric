@@ -1,0 +1,3 @@
+minutesBetweenTweets 20
+model models/clean_665.h5
+hashtag #LlullCCCB

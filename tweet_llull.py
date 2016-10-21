@@ -9,6 +9,9 @@ import sys
 import codecs
 from keras.models import load_model
 import util_twitter
+import time
+
+minutesBetweenTweets = 20
 
 path = "textosLlull/cleaner.txt" 
 text = open(path).read().lower()
@@ -39,25 +42,48 @@ def cleanText(original): #Remove @usernames and http links
 model = load_model('models/clean_655.h5')
 maxlen = model.input_shape[1]
 
-following = []
-fi=open('following.txt','r')
-for line in fi:
-    following.append(line.strip())
-fi.close()
-# Future: util_twitter.get_following("lollullelectric")
+done = {}
+logger=open("alreadyDone.txt",'r+',0)
+for line in logger:
+    sline = line.strip().split()
+    done[sline[0]]=sline[1]
 
-user = np.random.choice(following)
-tweets = util_twitter.get_twits(user)
+hashtag = ""
 
 temperatures = [0.2, 0.4, 0.7, 1.0]
-for user in following:
-  tweets = util_twitter.get_twits(user)
-  for tweet in tweets:
-    rawtext = tweet.text.encode('utf-8')
-    text = cleanText(rawtext)
-    if len(text)<=maxlen:
+try:
+ while True:
+   following = []
+   fi=open('following.txt','r')
+   for line in fi:
+      following.append(line.strip())
+   fi.close()
+   fi=open("configuration.txt",'r')
+   for line in fi:
+      sline=line.strip().split()
+      if (sline[0]=="minutesBetweenTweets"):
+         minutesBetweenTweets = sline[1]
+      elif (sline[0]=="model"):
+         model = load_model(sline[1])
+         maxlen = model.input_shape[1]
+      elif (sline[0]=="hashtag"):
+         hashtag = sline[1]
+   fi.close()
+   # Future: util_twitter.get_following("lollullelectric")
+   #for user in following:
+   user = np.random.choice(following)
+   print ("Going to answer to "+user)
+   try: 
+     tweets = util_twitter.get_twits(user)
+     tweet = np.random.choice(tweets)
+     #for tweet in tweets:
+     rawtext = tweet.text.encode('utf-8')
+     text = cleanText(rawtext)
+     if len(text)<=maxlen:
         print ("Too short: "+text)
-    else:
+     elif (tweet.id in done):
+        print ("Tweet already quoted")
+     else:
       try:
         diversity = np.random.choice(temperatures)
         generated = ''
@@ -67,7 +93,7 @@ for user in following:
         print('----- Generating with seed: "' + sentence + '"')
         sys.stdout.write(generated)
 
-        for i in range(110):
+        for i in range(115-len(hashtag)):
             x = np.zeros((1, maxlen, len(chars)))
             for t, char in enumerate(sentence):
                 if (char in char_indices):
@@ -82,9 +108,17 @@ for user in following:
 
             sys.stdout.write(next_char)
             sys.stdout.flush()
-        generated += " https://twitter.com/"+(user[1:])+"/status/"+str(tweet.id)
-        util_twitter.twit_text(generated)
+        generated += " "+hashtag+" https://twitter.com/"+(user[1:])+"/status/"+str(tweet.id)
+        response=util_twitter.twit_text(generated)
+        done[tweet.id]=response.id
+        logger.write(str(tweet.id)+","+str(response.id)+"\n")
+        time.sleep(minutesBetweenTweets*60)
         print("\n")
       except:
         print ("Had problems with "+rawtext)
         continue
+   except:
+      print (user+" has blocked us")
+except KeyboardInterrupt:
+ logger.close()
+ print ("Interrupted")
