@@ -1,6 +1,8 @@
+Ramon Llull electric bot tweeting at https://twitter.com/lollullelectric
+
 http://www.bsc.es/viz/llull/
 
-Ramon Llull electric tweeting at https://twitter.com/lollullelectric
+![alt tag](https://pbs.twimg.com/profile_images/788473798290989057/rpTkbBns_400x400.jpg)
 
 ### Dependences:
 
@@ -9,5 +11,3 @@ Ramon Llull electric tweeting at https://twitter.com/lollullelectric
 [Tweepy](http://docs.tweepy.org/en/v3.5.0/install.html?highlight=install)
 
 Numpy and others that are most easily installed with Anaconda.
-
-<a class="twitter-timeline" href="https://twitter.com/lollullelectric">Tweets by lollullelectric</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
