@@ -40,15 +40,14 @@ maxlen = model.input_shape[1]
 
 temperatures = [ 0.5, 0.7, 0.9]
 
-GEN_LEN = 10
-def calcular(texto,diversity):
+def calcular(texto,diversity,generateLength=10):
     #print (type(pregunta))
     pregunta = texto.encode('utf-8')
     text = pregunta[-maxlen:].rjust(50).lower()
     generated = ''
     sentence = text
     probabilities = {}
-    for i in range(GEN_LEN):
+    for i in range(generateLength):
         x = np.zeros((1, maxlen, len(chars)))
         for t, char in enumerate(sentence):
             if (char in char_indices):
@@ -82,8 +81,9 @@ def indices():
 @APP.route("/ramon/" )
 def contestar():
     temperature=float(request.args.get("diversity", "70"))/100.0
+    chars=int(request.args.get("chars", "10"))
     text = request.args.get("text","")
-    respuesta = calcular(text,temperature)
+    respuesta = calcular(text,temperature,chars)
     #respuesta = calcular()
     return respuesta #jsonify(a)
 
