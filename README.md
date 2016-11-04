@@ -38,7 +38,7 @@ Per poder executar el projecte necessitareu també tenir instal·lats
 
 Per executar l'entrenament de la RNN feu 
 ```bash
-$ train_llull.py
+$ python train_llull.py
 ```
 Aquesta és la part més costosa computacionalment del projecte.
 El procés d'entrenament genera un conjunt de RNN, progresivament amb menys error. Aquestes RNN es fan servir a l'hora de generar els tweets, executant
@@ -63,7 +63,7 @@ $ tweet.sh
 
 ￼![alt tag](https://pbs.twimg.com/profile_images/788473798290989057/rpTkbBns_400x400.jpg)
 
-## Ramon Llull bot electrico https://twitter.com/lollullelectric
+## Ramon Llull bot eléctrico https://twitter.com/lollullelectric
 
 Para una introducción general del proyecto: http://www.bsc.es/viz/llull/index_es.html
 
@@ -98,7 +98,7 @@ Para poder ejecutar el proyecto necesitaréis tener instalados:
 
 Para ejecutar el entrenamiento de la RNN 
 ```bash
-$ train_llull.py
+$ python train_llull.py
 ```
 Esta es la parte más costosa computacionalmente de todo el proyecto. 
 El proceso de entrenamiento genera un conjunto de RNN, progresivamente con menos error. Estas RNNs se utilizan para generar tweets, ejecutando
@@ -150,7 +150,7 @@ You will need to install these libraries
 
 To start the training proces of the RNN 
 ```bash
-$ train_llull.py
+$ python train_llull.py
 ```
 This is by far the most computationally-demanding part of the project.
 The training process will generate a set of RNN, progressively more accurate. These RNNs are used to write tweets, running
