@@ -1,0 +1,33 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Page Title</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <!-- APP js -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- add d3 from web -->
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        <script src="{{ url_for('static', filename='d3jsonp.js') }}"></script>
+
+</head>
+
+<body>
+    <form>
+        <p>
+            <label for="time" style="display: inline-block; align: left; width: 140px; text-align: left">
+                Diversity = <span id="prettyTemp">...</span>
+            </label>
+            <input type="range" id="temperature" min="0" max="200" style="width:100px" value="70">
+        </p>
+        <label for="question">Pregunta</label>
+        <div class="form-group">
+            <input type="text" class="form-control" id="question" name="question">
+        </div>
+    </form>
+    <div id="graph" class="chart"></div>
+    <script src="/static/realtime.js"></script>
+</body>
