@@ -14,11 +14,13 @@ import tensorflow as tf
 tf.python.control_flow_ops = tf
 
 GEN_LEN = 600
-path = "textos/all.txt"
-diversity = 0.5
-modelname = 'models/gaseta_v0155.h5'
-inputseed = u"En el cas del personal provinent d'un organisme autònom o ens instrumental de l'Ajuntament de Barcelona, la seva presa de possessió es durà a terme a partir del primer dia hàbil del mes següent a la publicació de la resolució del concurs a la Gaseta Municipal. En el cas que la publicació s'efectuï en la darrera Gaseta Municipal del mes, la presa de possessió es diferirà al primer dia hàbil del segon mes comptat des de la publicació de l'esmentada Gaseta."
- 
+
+path = "textosLlull/cleaner.txt"
+modelname = 'models/clean_SINGLELAYER1228.h5'
+
+diversity = 0.6
+inputseed = u"¿Què passa si guanya Trump? El pessimisme és la norma i, d'aquí uns dies, Donald Trump es podria converitr en l'home més poderós del món"
+
 text = open(path).read().lower()
 
 chars = sorted(list(set(text)))
@@ -40,6 +42,9 @@ maxlen = model.input_shape[1]
 rawtext = inputseed.encode('utf-8')
 text = rawtext[-maxlen:].rjust(maxlen)
 
+print()
+print (rawtext)
+
 generated = ''
 #start_index = random.randint(0, len(text) - maxlen - 1)
 sentence = text #[start_index: start_index + maxlen]
@@ -58,4 +63,5 @@ for i in range(GEN_LEN):
     sys.stdout.flush()
 response={"text": generated}
 #print (generated)
+print()
 
