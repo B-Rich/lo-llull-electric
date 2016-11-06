@@ -49,6 +49,7 @@ $ tweet.sh
 
 ### Altres recursos
 
++ [A Neural Network Playground](http://playground.tensorflow.org/)
 + [The Unreasonable Effectiveness of Recurrent Neural Networks](http://karpathy.github.io/2015/05/21/rnn-effectiveness/)
 + [Adventures in Narrated Reality, Part II](https://medium.com/artists-and-machine-intelligence/adventures-in-narrated-reality-part-ii-dc585af054cb#.mzbo3mtdf)
 
@@ -107,6 +108,8 @@ El proceso de entrenamiento genera un conjunto de RNN, progresivamente con menos
 $ tweet.sh
 ```
 ### Otros recursos
+
++ [A Neural Network Playground](http://playground.tensorflow.org/)
 + [The Unreasonable Effectiveness of Recurrent Neural Networks](http://karpathy.github.io/2015/05/21/rnn-effectiveness/)
 + [Adventures in Narrated Reality, Part II](https://medium.com/artists-and-machine-intelligence/adventures-in-narrated-reality-part-ii-dc585af054cb#.mzbo3mtdf)
 
@@ -159,6 +162,7 @@ $ tweet.sh
 ```
 
 ### Other resources
++ [A Neural Network Playground](http://playground.tensorflow.org/)
 + [The Unreasonable Effectiveness of Recurrent Neural Networks](http://karpathy.github.io/2015/05/21/rnn-effectiveness/)
 + [Adventures in Narrated Reality, Part II](https://medium.com/artists-and-machine-intelligence/adventures-in-narrated-reality-part-ii-dc585af054cb#.mzbo3mtdf)
 
