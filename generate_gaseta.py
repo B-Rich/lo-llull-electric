@@ -41,7 +41,7 @@ rawtext = inputseed.encode('utf-8')
 text = rawtext[-maxlen:].rjust(maxlen)
 
 print()
-print (inputseed)
+print (text)
 
 generated = ''
 #start_index = random.randint(0, len(text) - maxlen - 1)
